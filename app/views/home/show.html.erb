@@ -1,0 +1,24 @@
+<div class="flex-container vertical home-page">
+  <div class="flex-container horizontal home-page">
+    <h1 class="main-title">Welcome to skill-s-mart</h1>
+  </div>
+  <div class="flex-container horizontal home-page">
+    <div>
+      Are you looking for expert help? Sign up as a Customer
+      <%= link_to 'Customer sign up', new_customer_registration_path %>
+      <div>
+        Already registered?
+        <%= link_to 'Log in', new_customer_session_path %>
+      </div>
+    </div>
+
+    <div>
+      Are you an expert searching for customers? Sign up as an Expert
+      <%= link_to 'Expert sign up', '#' %>
+      <div>
+        Already registered?
+        <%= link_to 'Log in', '#' %>
+      </div>
+    </div>
+  </div>
+</div>

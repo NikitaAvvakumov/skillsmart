@@ -33,7 +33,7 @@ module Eaccent
     config.active_record.raise_in_transactional_callbacks = true
 
     config.generators do |g|
-      g.helpers     false
+      g.helper      false
       g.javascripts false
       g.stylesheets false
     end

@@ -1,0 +1,29 @@
+.flex-container {
+  display: flex;
+
+  &.vertical {
+    flex-direction: column;
+
+    &.home-page {
+      height: 100vh;
+      justify-content: center;
+    }
+  }
+
+  &.horizontal {
+    flex-direction: row;
+
+    &.home-page {
+      width: 100vw;
+      justify-content: space-around;
+    }
+  }
+}
+
+.main-title {
+  padding-bottom: 70px;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
