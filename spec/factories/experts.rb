@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :customer do
+  factory :expert do
     basic_user_info
   end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :experts
   root 'home#show'
 
   devise_for :customers

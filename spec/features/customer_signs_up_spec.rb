@@ -9,6 +9,6 @@ RSpec.feature 'Customer authentication', type: :feature do
     fill_in 'Password confirmation', with: 'password'
     click_button 'Sign up'
 
-    expect(page).to have_text 'Welcome!'
+    expect(page).to have_text 'Edit your name'
   end
 end
