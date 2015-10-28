@@ -5,5 +5,7 @@ FactoryGirl.define do
     sequence(:email) do |n|
       FactoryHelper::Internet.free_email("#{first_name}#{last_name}#{n}")
     end
+    password 'password'
+    password_confirmation 'password'
   end
 end

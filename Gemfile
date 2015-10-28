@@ -41,6 +41,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'factory-helper'
+  gem 'capybara'
 end
 
 group :development do

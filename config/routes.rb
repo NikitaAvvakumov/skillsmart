@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :customers
   root 'home#show'
+
+  devise_for :customers
+
+  resources :customers, only: [:show, :edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

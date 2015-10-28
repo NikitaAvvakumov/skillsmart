@@ -2,21 +2,41 @@ require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
   describe 'validations' do
-    let(:customer) { FactoryGirl.build_stubbed :customer }
+    context 'when customer is persisted' do
+      let(:customer) { FactoryGirl.build_stubbed :customer }
 
-    it 'requires first_name' do
-      customer.first_name = nil
+      it 'requires first_name' do
+        customer.first_name = nil
 
-      expect(customer).not_to be_valid
+        expect(customer).not_to be_valid
+      end
+
+      it 'requires last_name' do
+        customer.last_name = nil
+
+        expect(customer).not_to be_valid
+      end
     end
 
-    it 'requires last_name' do
-      customer.last_name = nil
+    context 'when customer is not persisted' do
+      let(:customer) { FactoryGirl.build :customer }
 
-      expect(customer).not_to be_valid
+      it 'does not require first_name' do
+        customer.first_name = nil
+
+        expect(customer).to be_valid
+      end
+
+      it 'does not require last_name' do
+        customer.last_name = nil
+
+        expect(customer).to be_valid
+      end
     end
 
     describe 'email validation' do
+      let(:customer) { FactoryGirl.build_stubbed :customer }
+
       it 'is required' do
         customer.email = nil
 

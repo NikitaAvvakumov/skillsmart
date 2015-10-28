@@ -1,0 +1,12 @@
+<h1>Customer profile for <%= full_name_for(@customer) %></h1>
+
+<p>First name: <%= @customer.first_name %></p>
+<p>Last name: <%= @customer.last_name %></p>
+
+<% if current_customer == @customer %>
+  <div>
+    <%= link_to 'Edit your name', edit_customer_path(@customer) %>
+    <%= link_to 'Edit your password', edit_customer_registration_path %>
+    <%= link_to 'Delete your profile', @customer, method: :delete, confirm: { data: 'Certain?' } %>
+  </div>
+<% end %>
