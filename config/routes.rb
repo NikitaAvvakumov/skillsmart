@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :experts
+  get 'experts/show'
+
+  get 'experts/edit'
+
+  get 'experts/update'
+
+  get 'experts/destroy'
+
   root 'home#show'
 
   devise_for :customers
+  devise_for :experts
 
   resources :customers, only: [:show, :edit, :update, :destroy]
+  resources :experts, only: [:show, :edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
