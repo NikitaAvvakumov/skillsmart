@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     user = resource.class.name.underscore
-    eval "edit_#{user}_path current_#{user}"
+    if resource.first_name.blank?
+      flash[:notice] = 'Please complete your profile'
+      eval "edit_#{user}_path current_#{user}"
+    else
+      eval "current_#{user}"
+    end
   end
 end

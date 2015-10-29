@@ -3,21 +3,21 @@
     <h1 class="main-title">Welcome to skill[s]mart</h1>
   </div>
   <div class="flex-container horizontal home-page">
-    <div>
-      Are you looking for expert help? Sign up as a Customer
-      <%= link_to 'Customer sign up', new_customer_registration_path %>
+    <div class="center sparse">
+      Are you looking for expert help? Sign up as a Customer<br />
+      <%= link_to 'Customer sign up', new_customer_registration_path, class: 'button' %>
       <div>
         Already registered?
         <%= link_to 'Log in', new_customer_session_path %>
       </div>
     </div>
 
-    <div>
-      Are you an expert searching for customers? Sign up as an Expert
-      <%= link_to 'Expert sign up', new_expert_registration_path %>
+    <div class="center sparse">
+      Are you an expert searching for customers? Sign up as an Expert<br />
+      <%= link_to 'Expert sign up', new_expert_registration_path, class: 'button' %>
       <div>
         Already registered?
-        <%= link_to 'Log in', '#' %>
+        <%= link_to 'Log in', new_expert_session_path %>
       </div>
     </div>
   </div>

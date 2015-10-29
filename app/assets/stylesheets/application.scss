@@ -1,3 +1,7 @@
+@import 'bourbon';
+@import 'base/base';
+@import 'neat';
+
 .flex-container {
   display: flex;
 
@@ -22,6 +26,24 @@
 
 .main-title {
   padding-bottom: 70px;
+  font-size: 2.5em;
+}
+
+.center {
+  text-align: center;
+}
+
+.sparse {
+  line-height: 3em;
+}
+
+.button.danger {
+  background-color: #f05f5c;
+
+  &:hover,
+  &:focus {
+    background-color: shade(#f05f5c, 20%);
+  }
 }
 
 body {
