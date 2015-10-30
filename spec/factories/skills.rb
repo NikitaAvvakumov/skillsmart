@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :skill do
     name "MyString"
-service nil
+    service
   end
-
 end

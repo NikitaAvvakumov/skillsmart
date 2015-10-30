@@ -4,7 +4,7 @@ class Expert < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :masteries
+  has_many :masteries, dependent: :destroy
   has_many :skills, through: :masteries
 
   validates :first_name, presence: true, on: :update

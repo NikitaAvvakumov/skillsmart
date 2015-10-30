@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030093050) do
+ActiveRecord::Schema.define(version: 20151030093752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20151030093050) do
   add_index "experts", ["email"], name: "index_experts_on_email", unique: true, using: :btree
   add_index "experts", ["reset_password_token"], name: "index_experts_on_reset_password_token", unique: true, using: :btree
 
+  create_table "masteries", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "skill_id"
+    t.integer  "expert_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "masteries", ["expert_id"], name: "index_masteries_on_expert_id", using: :btree
+  add_index "masteries", ["skill_id"], name: "index_masteries_on_skill_id", using: :btree
+
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -71,5 +82,7 @@ ActiveRecord::Schema.define(version: 20151030093050) do
 
   add_index "skills", ["service_id"], name: "index_skills_on_service_id", using: :btree
 
+  add_foreign_key "masteries", "experts"
+  add_foreign_key "masteries", "skills"
   add_foreign_key "skills", "services"
 end
