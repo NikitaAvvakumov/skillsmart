@@ -19,9 +19,9 @@ RSpec.feature 'Expert search', type: :feature do
   private
 
   def given_an_expert_exists(name:, skills_array:, service:)
-    FactoryGirl.create :service, name: service
+    expert_service_area = FactoryGirl.create :service, name: service
     skills = skills_array.map do |skill_name|
-      FactoryGirl.create :skill, name: skill_name, service: service
+      FactoryGirl.create :skill, name: skill_name, service: expert_service_area
     end
     FactoryGirl.create :expert, skills: skills
   end

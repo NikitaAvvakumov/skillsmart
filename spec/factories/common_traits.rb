@@ -6,6 +6,6 @@ FactoryGirl.define do
       FactoryHelper::Internet.free_email("#{first_name}#{last_name}#{n}")
     end
     password 'password'
-    password_confirmation 'password'
+    password_confirmation { password }
   end
 end

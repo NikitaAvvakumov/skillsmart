@@ -1,0 +1,12 @@
+<%= form_for [@expert, @mastery] do |f| %>
+  <%= label_tag 'services', 'In which service area is your skill?' %>
+  <%= select_tag 'services', options_from_collection_for_select(@services, 'id', 'name') %>
+
+  <%= f.label :skill_id, 'Please select your skill' %>
+  <%= f.select :skill_id, options_from_collection_for_select(@skills, 'id', 'name') %>
+
+  <%= f.label :description, 'Please briefly describe your proficiency in the chosen skill (250 characters max)' %>
+  <%= f.text_area :description %>
+
+  <%= f.submit 'Add skill' %>
+<% end %>

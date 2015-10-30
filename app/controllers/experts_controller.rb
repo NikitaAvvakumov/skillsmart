@@ -25,7 +25,7 @@ class ExpertsController < ApplicationController
   private
 
   def set_expert
-    @expert = Expert.find(params[:id])
+    @expert = Expert.includes(:skills).find(params[:id])
   end
 
   def expert_params

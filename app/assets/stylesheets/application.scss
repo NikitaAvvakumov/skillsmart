@@ -2,6 +2,10 @@
 @import 'base/base';
 @import 'neat';
 
+/* Custom variables */
+$safe-colour: #aab971;
+$danger-colour: #f05f5c;
+
 .flex-container {
   display: flex;
 
@@ -37,12 +41,23 @@
   line-height: 3em;
 }
 
-.button.danger {
-  background-color: #f05f5c;
+.button {
+  &.safe {
+    background-color: $safe-colour;
 
-  &:hover,
-  &:focus {
-    background-color: shade(#f05f5c, 20%);
+    &:hover,
+    &:focus {
+      background-color: shade($safe-colour, 20%);
+    }
+  }
+
+  &.danger {
+    background-color: $danger-colour;
+
+    &:hover,
+    &:focus {
+      background-color: shade($danger-colour, 20%);
+    }
   }
 }
 
