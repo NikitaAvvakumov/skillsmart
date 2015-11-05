@@ -4,6 +4,8 @@ class ExpertsController < ApplicationController
   before_action :authorize_expert!, except: [:show]
 
   def show
+    @masteries = @expert.masteries
+    @skills = @expert.skills
   end
 
   def edit

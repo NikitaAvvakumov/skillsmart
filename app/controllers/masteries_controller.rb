@@ -8,10 +8,13 @@ class MasteriesController < ApplicationController
 
   def create
     @expert = Expert.find(params[:expert_id])
-    skill = Skill.find(params[:mastery][:skill_id])
-    mastery = Mastery.new(expert: @expert, skill: skill)
-    if mastery.save
+    @mastery = @expert.masteries.build(mastery_params)
+    if @mastery.save
       redirect_to @expert
+    else
+      @services = Service.all
+      @skills = Skill.where(service: Service.first)
+      render 'new'
     end
   end
 
@@ -22,5 +25,11 @@ class MasteriesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def mastery_params
+    params.require(:mastery).permit(:skill_id, :description)
   end
 end

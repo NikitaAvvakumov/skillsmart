@@ -1,4 +1,12 @@
 <%= form_for [@expert, @mastery] do |f| %>
+  <% if @mastery.errors.any? %>
+    <ul>
+      <% @mastery.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= label_tag 'services', 'In which service area is your skill?' %>
   <%= select_tag 'services', options_from_collection_for_select(@services, 'id', 'name') %>
 

@@ -1,13 +1,24 @@
-<h1>Expert profile for <%= full_name_for(@expert) %>
+<h1>Expert profile for <%= full_name_for(@expert) %></h1>
 
 <p>First name: <%= @expert.first_name %></p>
 <p>Last name: <%= @expert.last_name %></p>
 
-<p>Skills:
-<% if @expert.skills.present? %>
-  <%= @expert.skills.pluck(:name).join(', ') %>
-<% end %>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>Skill</th>
+      <th>Description of expertise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @masteries.each do |mastery| %>
+      <tr>
+        <td><%= mastery.skill.name %></td>
+        <td><%= mastery.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <% if current_expert && current_expert == @expert %>
   <div>
