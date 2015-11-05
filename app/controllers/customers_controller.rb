@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer
-  before_action :authenticate_customer!
+  before_action :authenticate_user!
   before_action :authorize_customer!, except: [:show]
 
   def show

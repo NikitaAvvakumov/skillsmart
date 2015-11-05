@@ -1,6 +1,8 @@
 class ExpertsController < ApplicationController
+  include Authorization
+
   before_action :set_expert
-  before_action :authenticate_expert!
+  before_action :authenticate_user!, only: [:show]
   before_action :authorize_expert!, except: [:show]
 
   def show
@@ -32,9 +34,5 @@ class ExpertsController < ApplicationController
 
   def expert_params
     params.require(:expert).permit(:first_name, :last_name)
-  end
-
-  def authorize_expert!
-    redirect_to root_url unless current_expert == @expert
   end
 end

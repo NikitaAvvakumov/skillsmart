@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  devise_group :user, contains: [:customer, :expert]
+
   def after_sign_in_path_for(resource)
     user = resource.class.name.underscore
     if resource.first_name.blank?

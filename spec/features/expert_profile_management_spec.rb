@@ -13,11 +13,11 @@ RSpec.feature 'Expert profile management', type: :feature do
     visit expert_path(expert)
     click_link 'Add a skill'
     select 'IT', from: 'In which service area is your skill?'
-    select 'networking', from: 'Skills'
-    fill_in 'Description', with: 'I have a router'
+    select 'networking', from: 'Please select your skill'
+    fill_in 'Please briefly describe your proficiency in the chosen skill (250 characters max)', with: 'I have a router'
     click_button 'Add skill'
 
-    expect(response).to redirect_to expert_path(expert)
+    expect(page).to have_text('Skill added')
     expect(page).to have_text('I have a router')
   end
 
