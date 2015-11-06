@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Mastery, type: :model do
-  let(:mastery) { FactoryGirl.build_stubbed :mastery }
+  let(:mastery) { FactoryGirl.build :mastery }
 
   describe 'validations' do
     specify 'it must be associated with a skill' do
@@ -20,6 +20,16 @@ RSpec.describe Mastery, type: :model do
       mastery.description = 'a' * 251
 
       expect(mastery).not_to be_valid
+    end
+
+    specify 'expert cannot add same skill twice' do
+      puts mastery.inspect
+      dup_mastery = mastery.dup
+      dup_mastery.save!
+
+      expect(mastery).not_to be_valid
+      expect(mastery.errors.full_messages).
+        to include "Skill has already been added to your profile."
     end
   end
 end
