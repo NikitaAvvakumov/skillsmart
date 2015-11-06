@@ -1,4 +1,5 @@
-if Rails.env == 'development'
+# TODO: once live, stop seeding production db
+# if Rails.env == 'development'
   puts 'Seeding the db'
 
   puts 'Services'
@@ -42,4 +43,4 @@ if Rails.env == 'development'
     puts n if n > 0 && n % 100 == 0
   end
   Expert.first.update(email: 'expert@example.com')
-end
+# end
