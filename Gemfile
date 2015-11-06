@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -42,16 +43,17 @@ gem 'bitters'
 gem 'refills'
 gem 'will_paginate'
 
-# TODO: move FactoryGirl out of production when no longer need to seed that db
+# TODO: move factory gems out of production when no longer need to seed that db
 gem 'factory_girl_rails'
+gem 'factory-helper'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
   # gem 'factory_girl_rails'
+  # gem 'factory-helper'
   gem 'database_cleaner'
-  gem 'factory-helper'
   gem 'capybara'
   gem 'launchy'
 end
