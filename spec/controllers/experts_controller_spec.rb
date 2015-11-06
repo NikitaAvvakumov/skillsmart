@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe ExpertsController, type: :controller do
   describe 'before_actions' do
     controller do
+      def edit
+        render text: 'edit success'
+      end
+
       def show
         render text: 'show success'
       end
@@ -15,21 +19,23 @@ RSpec.describe ExpertsController, type: :controller do
     let(:expert) { double 'expert' }
 
     before do
-      allow(Expert).to receive(:find).with('1').and_return expert
+      allow(Expert).to receive_message_chain(:includes, :find).
+        with('1').and_return expert
     end
 
     specify 'set_expert assigns @expert' do
-      get :show, id: 1
+      get :edit, id: 1
 
       expect(assigns(:expert)).to eq expert
     end
 
-    describe 'authenticate_expert!' do
+    describe 'authenticate_user!' do
       context 'when not signed in' do
         example do
           get :show, id: 1
 
-          expect(response).to redirect_to new_expert_session_path
+          # TODO: Where should this redirect?
+          expect(response).to redirect_to new_customer_session_path
         end
       end
 
@@ -52,7 +58,7 @@ RSpec.describe ExpertsController, type: :controller do
           allow(controller).to receive(:current_expert).
             and_return double
 
-          get :index, id: 1
+          get :edit, id: 1
 
           expect(response).to redirect_to root_url
         end

@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.feature 'Expert search', type: :feature do
   background do
-    given_skills(skills: %w(Networking Windows), service_name: 'IT')
+    given_skills(skills: %w(Networking Windows Peripherals), service_name: 'IT')
     given_skills(skills: %w(Engine Transmission), service_name: 'Auto')
     given_expert(name: 'IT Guy', skills: %w(Networking))
+    given_expert(name: 'Windows Guy', skills: %w(Windows Peripherals))
+    given_expert(name: 'Admin Guy', skills: %w(Networking Peripherals))
     given_expert(name: 'Auto Guy', skills: %w(Engine))
   end
 
@@ -12,9 +14,19 @@ RSpec.feature 'Expert search', type: :feature do
 
   scenario 'Customer searches for an expert with a single skill' do
     when_customer_searches_for_help_in(service: 'IT',
-                                       skills: %w(networking))
+                                       skills: %w(Networking))
 
     he_should_see('IT Guy')
+    he_should_not_see('Auto Guy')
+  end
+
+  scenario 'Customer searches for an expert with multiple skills' do
+    when_customer_searches_for_help_in(service: 'IT',
+                                       skills: %w(Networking Peripherals))
+
+    he_should_see('Admin Guy')
+    he_should_not_see('IT Guy')
+    he_should_not_see('Windows Guy')
     he_should_not_see('Auto Guy')
   end
 

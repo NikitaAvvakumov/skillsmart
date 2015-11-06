@@ -1,23 +1,22 @@
 class ExpertsController < ApplicationController
   include Authorization
 
-  before_action :set_expert, except: [:index]
+  before_action :set_expert, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :index]
   before_action :authorize_expert!, except: [:show, :index]
 
   def index
     @services = Service.all
-    @skills = Service.first.skills
     if params[:skills]
-      @experts = Expert.search_by_skills(params[:skills]).paginate(page: params[:page], per_page: 25)
+      search_for_experts_with_given_skills
     else
-      @experts = Expert.includes(:skills).paginate(page: params[:page], per_page: 25)
+      all_experts
     end
   end
 
   def show
-    @masteries = @expert.masteries
-    @skills = @expert.skills
+    @expert = Expert.find(params[:id])
+    @masteries = @expert.masteries.includes(:skill)
   end
 
   def edit
@@ -44,5 +43,21 @@ class ExpertsController < ApplicationController
 
   def expert_params
     params.require(:expert).permit(:first_name, :last_name)
+  end
+
+  def paginated(query)
+    query.paginate(page: params[:page], per_page: 25)
+  end
+
+  def search_for_experts_with_given_skills
+    @service = params[:services]
+    @skills = Service.find(@service).skills
+    @selected_skills = params[:skills]
+    @experts = paginated(Expert.search_by_skills(params[:skills]))
+  end
+
+  def all_experts
+    @experts = paginated(Expert.includes(:skills))
+    @skills = Service.first.skills
   end
 end

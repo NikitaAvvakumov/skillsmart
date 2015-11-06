@@ -23,7 +23,6 @@ RSpec.describe Mastery, type: :model do
     end
 
     specify 'expert cannot add same skill twice' do
-      puts mastery.inspect
       dup_mastery = mastery.dup
       dup_mastery.save!
 

@@ -15,6 +15,7 @@ class Expert < ActiveRecord::Base
     joins(:skills).
       where(skills: { id: skills }).
       group("experts.id").
-      having("count(*) = #{skills.size}")
+      having("count(*) = #{skills.size}").
+      preload(:skills)
   end
 end

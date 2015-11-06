@@ -21,20 +21,24 @@ if Rails.env == 'development'
   end
 
   puts 'Customers:'
-  10.times do |n|
+  1000.times do |n|
     FactoryGirl.create :customer
     puts n if n > 0 && n % 100 == 0
   end
   Customer.first.update(email: 'customer@example.com')
 
   puts 'Experts'
-  5.times do |n|
+  1000.times do |n|
     expert = FactoryGirl.create :expert
     service = services.sample
-    skills = (1..3).map do
-      service.skills.limit(1).offset(rand(service.skills.count)).first
+    while expert.skills.size < 3
+      skill = service.skills.limit(1).offset(rand(service.skills.count)).first
+      begin
+        expert.skills << skill
+      rescue
+        next
+      end
     end
-    expert.skills << skills
     puts n if n > 0 && n % 100 == 0
   end
   Expert.first.update(email: 'expert@example.com')
