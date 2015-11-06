@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :experts
 
   resources :customers, only: [:show, :edit, :update, :destroy]
-  resources :experts, only: [:show, :edit, :update, :destroy] do
+  resources :experts, only: [:index, :show, :edit, :update, :destroy] do
     resources :masteries
   end
 

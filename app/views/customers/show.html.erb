@@ -5,6 +5,7 @@
 
 <% if current_customer == @customer %>
   <div>
+    <%= link_to 'Find an Expert', experts_path, class: 'button safe' %>
     <%= link_to 'Edit your name', edit_customer_path(@customer), class: 'button' %>
     <%= link_to 'Edit your password', edit_customer_registration_path, class: 'button' %>
     <%= link_to 'Delete your profile', @customer, method: :delete, confirm: { data: 'Certain?' }, class: 'button danger' %>

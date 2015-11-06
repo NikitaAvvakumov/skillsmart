@@ -1,0 +1,28 @@
+<h1>Experts</h1>
+
+<%= form_tag experts_path, method: :get do %>
+  <%= label_tag :services, 'In which area do you need assistance?' %>
+  <%= select_tag :services, options_from_collection_for_select(@services, 'id', 'name') %>
+
+  <%= label_tag :skills, 'What exactly do you need help with?' %>
+  <%= select_tag :skills, options_from_collection_for_select(@skills, 'id', 'name'), multiple: true %>
+
+  <%= submit_tag 'Find an expert' %>
+<% end %>
+<%= link_to 'Clear search', experts_path %>
+
+<table>
+  <tbody>
+    <%= will_paginate @experts %>
+    <% if @experts.empty? %>
+      <p>No experts match your criteria. Broaden your search by removing some skills.</p>
+    <% end %>
+
+    <% @experts.each do |expert| %>
+      <tr>
+        <td><%= link_to full_name_for(expert), expert %></td>
+        <td><%= expert.skills.pluck(:name).to_sentence %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

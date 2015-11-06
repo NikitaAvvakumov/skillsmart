@@ -10,4 +10,11 @@ class Expert < ActiveRecord::Base
   validates :first_name, presence: true, on: :update
   validates :last_name, presence: true, on: :update
   validates :email, presence: true, uniqueness: { case_sensitive: false }
+
+  def self.search_by_skills(skills)
+    joins(:skills).
+      where(skills: { id: skills }).
+      group("experts.id").
+      having("count(*) = #{skills.size}")
+  end
 end
